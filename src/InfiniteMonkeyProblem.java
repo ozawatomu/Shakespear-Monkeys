@@ -3,6 +3,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
@@ -13,36 +14,40 @@ import javax.swing.Timer;
 
 @SuppressWarnings("serial")
 public class InfiniteMonkeyProblem extends JPanel implements ActionListener{
-	Timer timer = new Timer(1, this);
+	Timer timer = new Timer(100, this);
 	static int screenSizeWidth = 1620;
 	static int screenSizeHeight = 1620;
 	static String target = "To be or not to be";
 	static double mutation = 0.01;
 	static int populationCount = 200;
-	
+
 	static int generationCount = 1;
 	static Population population;
-	
-	public static void main(String[] args) {
+
+	public static void main(String[] args){
 		population = new Population(target, mutation, populationCount);
-		
+
 		JFrame jFrame = new JFrame();
 		jFrame.setTitle("Shakespear Monkeys");
 		jFrame.setSize(screenSizeWidth, screenSizeHeight);
 		jFrame.setVisible(true);
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		InfiniteMonkeyProblem infiniteMonkeyProblem = new InfiniteMonkeyProblem();
 		infiniteMonkeyProblem.setPreferredSize(new Dimension(screenSizeWidth, screenSizeHeight));
 		jFrame.add(infiniteMonkeyProblem);
 		jFrame.pack();
 	}
 
-	public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g){
 		population.generateNewPopulation();
 		generationCount++;
-		
-		Graphics2D g2d = (Graphics2D) g;
+
+		Graphics2D g2d = (Graphics2D)g;
+	    RenderingHints rh = new RenderingHints(
+	             RenderingHints.KEY_TEXT_ANTIALIASING,
+	             RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+	    g2d.setRenderingHints(rh);
 		g2d.setColor(new Color(233, 231, 233));
 		g2d.fillRect(0, 0, screenSizeWidth, screenSizeHeight);
 		g2d.setColor(new Color(60, 59, 64));
@@ -55,17 +60,17 @@ public class InfiniteMonkeyProblem extends JPanel implements ActionListener{
 		g2d.drawString("Mutation Rate: " + df.format(mutation*100) + "%", 60, 260);
 		g2d.drawString("Average Fitness: " + df.format(population.averageFitness*100) + "%", 60, 300);
 		g2d.drawString("Generation: " + generationCount, 60, 340);
-		
+
 		population.draw(g2d, 900, 50, 35);
-		
-		if(!population.isFinished) {
+
+		if(!population.isFinished){
 			timer.start();
-		}else {
+		}else{
 			timer.stop();
 		}
 	}
-	
-	public void actionPerformed(ActionEvent arg0) {
+
+	public void actionPerformed(ActionEvent arg0){
 		repaint();
 	}
 }

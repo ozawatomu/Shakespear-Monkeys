@@ -17,9 +17,9 @@ public class InfiniteMonkeyProblem extends JPanel implements ActionListener{
 	Timer timer = new Timer(100, this);
 	static int screenSizeWidth = 1620;
 	static int screenSizeHeight = 1620;
-	static String target = "Im too drunk to taste this Steak";
+	static String target = "To be or not to be";
 	static double mutation = 0.01;
-	static int populationCount = 1000;
+	static int populationCount = 200;
 
 	static int generationCount = 1;
 	static Population population;

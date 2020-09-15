@@ -38,7 +38,7 @@ public class DNA {
 		//fitness = correctness/target.length();
 		
 		//BETTER FITNESS
-		fitness = Math.pow(correctness, 2);
+		fitness = Math.pow(correctness, 3);
 	}
 	
 	public DNA crossOver(DNA otherDNA) {

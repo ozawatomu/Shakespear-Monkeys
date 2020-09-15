@@ -44,9 +44,7 @@ public class InfiniteMonkeyProblem extends JPanel implements ActionListener{
 		generationCount++;
 
 		Graphics2D g2d = (Graphics2D)g;
-	    RenderingHints rh = new RenderingHints(
-	             RenderingHints.KEY_TEXT_ANTIALIASING,
-	             RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+	    RenderingHints rh = new RenderingHints(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 	    g2d.setRenderingHints(rh);
 		g2d.setColor(new Color(233, 231, 233));
 		g2d.fillRect(0, 0, screenSizeWidth, screenSizeHeight);

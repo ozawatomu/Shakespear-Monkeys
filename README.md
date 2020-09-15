@@ -45,6 +45,6 @@ Target Sentence: To be or not to be
 
 Population: 1000 monkeys\
 Mutation Rate: 1%\
-Target Sentence: To be or not to be
+Target Sentence: Im too drunk to taste this steak
 
 <img src="Demo_P1000_M001.gif" width="600" alt="Program Demo">
